@@ -1,0 +1,64 @@
+.titulo{
+    text-align: center; 
+    margin-top: 30px;
+}
+
+.tabla{
+    display: flex; 
+    border: 1px solid #000; 
+    padding: 5px; 
+    border-radius: 5px; 
+    width:745px; 
+    text-align: center; 
+    margin:auto; 
+    justify-content: center;
+}
+
+.contenedorColumna{
+    display: flex; 
+    flex-direction: row;
+}
+
+.columna-1{
+    background-color: #0001; 
+    padding: 20px; 
+    margin: 5px; 
+    width: 200px; 
+    display: flex; 
+    flex-direction: column;
+}
+
+.restoColumnas{
+    background-color: #0001; 
+    padding: 20px; 
+    margin: 5px;
+}
+
+.listaBandas{
+    list-style: none; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; 
+    padding: 0;
+}
+
+.listaBandas > li{
+    background-color: #2231;
+}
+
+.listaCalificacion{
+    list-style: none; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 13px; 
+    padding: 0;
+}
+
+.listaBandas > li{
+    font-size: 20px;
+}
+
+.boton{
+    border: none; 
+    margin: 5px 0;
+}
