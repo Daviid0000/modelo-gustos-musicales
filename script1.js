@@ -1,15 +1,12 @@
             const calificaciones = document.getElementById("calificaciones")
-            let total_calificiones = tf.tensor([]);
             
             calificaciones.addEventListener('click', () => {
                 let user = [document.getElementById('user').value]
                 
-                
-                console.log("usuarios:", user)
                 if (user == "") {
                     console.log("Ingrese un nombre de usuario")
                 } else {
-                    console.log("un usuario:", user)
+                    console.log("Usuario:", user)
                     const tabla_1 = document.getElementById('tabla-1')
                     const tabla_2 = document.getElementById('tabla-2')
                     const user1 = document.getElementById('user1')
@@ -46,7 +43,9 @@
                     user1.textContent = user
 
                     let votos = tf.concat([t_cal1, t_cal2, t_cal3, t_cal4, t_cal5, t_cal6, t_cal7])
-                    votos2 = tf.tensor2d(votos.arraySync(), [1, 7])
+                    console.log("votosssss:", votos)
+                    let votos2 = tf.tensor2d(votos.arraySync(), [1, 7])
+                    console.log("Votos:")
                     votos2.print()
 
                     const gusto_musical = tf.tensor([
@@ -73,9 +72,10 @@
                     preferencias.print()
 
                     const sumTotal = preferencias.sum().arraySync();
+                    console.log("suma total:",sumTotal)
 
                     let preferenciasNormalizadas = preferencias.div(sumTotal);
-                    let redondeo = preferenciasNormalizadas.mul(100).arraySync().map((row) => row.map((value) => Math.round(value)));
+                    let redondeo = preferenciasNormalizadas.mul(100).arraySync();
                     console.log("redondeo",redondeo)
                     
                     const elPreferencias = document.getElementById('preferencias')
@@ -94,9 +94,6 @@
 
                         elPreferencias.appendChild(pfca)
                     }
-
-                    console.log("Preferencias normalizadas:");
-                    preferenciasNormalizadas.print();
                     
                     const gustos = tf.topk(preferencias, estilos.length)
                     console.log("gustos musicales:", gustos)
@@ -104,9 +101,21 @@
                     const indice_estilo_musical = gustos.indices.arraySync()
                     console.log("Indice de gusto musical:", indice_estilo_musical)
 
+                    const list = document.getElementById('list')
                     user.map((u, i) => {
                         generos_categorizados = indice_estilo_musical[i].map((v) => estilos[v])
-                        console.log("Usuarios:", u, " género musical preferido:", generos_categorizados)
+
+                        generos_categorizados.map((x) => {
+                            let elEstilos = document.createElement('li');
+                                elEstilos.style.backgroundColor = '#2231'
+                                elEstilos.style.padding = '2px'
+                                elEstilos.style.margin = '3px'
+
+                                console.log("elemento:",x)
+                                elEstilos.textContent = x
+
+                                list.appendChild(elEstilos)
+                        })  
                     })
                 }    
             })
